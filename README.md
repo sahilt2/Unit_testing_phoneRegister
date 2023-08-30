@@ -1,4 +1,4 @@
-# UnitTesting_DiceGame
+# UnitTesting_PhoneRegister
 
 ## 1. Initialise
 
