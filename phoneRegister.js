@@ -23,7 +23,10 @@ module.exports = class PhoneRegister{
     }
 
     getPersonNumbersByType(firstname,lastname,type){
-        if(firstname && lastname && type){
+        if(arguments.length<3){
+            throw new Error('missing parameter');
+        }
+        // if(firstname && lastname && (type || type:""){
             const numbersFound =[];
             for(const person of this.#register){
                 if(person.firstname===firstname && person.lastname===lastname){
@@ -35,8 +38,31 @@ module.exports = class PhoneRegister{
                 }
             }
             return numbersFound;
-        } else{
-            throw new Error('missing parameter')
-        }
+        // } else{
+        //     throw new Error('missing parameter')
+        // }
     }
+    getAllNumbersByType(type){
+        if(arguments.length<1){
+            throw new Error('missing parameter');
+        }
+        const numbersFound = [];
+
+        for(const person of this.#register){
+            for(const phone of person.phones){
+                if(phone.type===type){
+                    numbersFound.push({
+                        firstname:person.firstname,
+                        lastname:person.lastname,
+                        number:{
+                            type:phone.type,
+                            tel:phone.number
+                        }
+                    });
+                }
+            }
+        }
+        return numbersFound;
+
+    };
 }

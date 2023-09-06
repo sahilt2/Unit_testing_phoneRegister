@@ -55,3 +55,5 @@ returns []
 All parameters missing
 
 throws exception `missing parameter`
+
+### Test 5: testing empty string as type using modified data
